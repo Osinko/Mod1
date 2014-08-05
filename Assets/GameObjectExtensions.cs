@@ -339,6 +339,19 @@ public static partial class IListExtensions
 public static partial class StringExtensions
 {
 		/// <summary>
+		/// 文字列を反転します
+		/// </summary>
+		public static string Reverse (this string text)
+		{
+				char[] cArray = text.ToCharArray ();
+				string reverse = "";
+				for (int i = cArray.Length-1; i > -1; i--) {
+						reverse += cArray [i];
+				}
+				return reverse;
+		}
+
+		/// <summary>
 		/// 指定された文字列で区切られた部分文字列を格納する文字列配列を返します
 		/// </summary>
 		public static string[] Split (this string self, string separator)

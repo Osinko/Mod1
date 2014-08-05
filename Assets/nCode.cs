@@ -19,6 +19,6 @@ public class nCode : MonoBehaviour
 						number = Mathf.FloorToInt (number / baseNum);
 						str += mod.ToString ();
 				}
-				return str;
+				return str.Reverse ();
 		}
 }
