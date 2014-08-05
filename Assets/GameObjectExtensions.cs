@@ -17,14 +17,14 @@ public struct IntVector2
 				this.x = x;
 				this.z = z;
 		}
-
+	
 		public static IntVector2 operator + (IntVector2 a, IntVector2 b)
 		{
 				a.x += b.x;
 				a.z += b.z;
 				return a;
 		}
-
+	
 		// <summary>
 		// 範囲内であるか調べます。範囲内であればtrueを返す
 		// </summary>
@@ -34,14 +34,14 @@ public struct IntVector2
 		{
 				return value.x >= 0 && value.x < range.x && value.z >= 0 && value.z < range.z;
 		}
-
+	
 		public  bool Contains (IntVector2 range)
 		{
 				return this.x >= 0 && this.x < range.x && this.z >= 0 && this.z < range.z;
 		}
-
-
-
+	
+	
+	
 		/// <summary>
 		/// 乱数を返す
 		/// </summary>
@@ -350,7 +350,7 @@ public static partial class StringExtensions
 				}
 				return reverse;
 		}
-
+	
 		/// <summary>
 		/// 指定された文字列で区切られた部分文字列を格納する文字列配列を返します
 		/// </summary>
