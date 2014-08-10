@@ -7,7 +7,7 @@ public class Test2Code : MonoBehaviour
 
 		void Start ()
 		{
-				float a = 0.7071f;
+				//float a = 0.7071f;
 				//print (Convert.ToString (a, 2).PadLeft (8, '0'));
 	
 		}

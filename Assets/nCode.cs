@@ -4,21 +4,31 @@ using System.Collections;
 public class nCode : MonoBehaviour
 {
 
+		public float number;
+		public int baseNum;
+
 		void Start ()
 		{
-				print (NCode (16, 2));
+				print (NCode (number, baseNum));
 		}
 
-
+		//n進数へのコンバート
 		public  string NCode (float number, float baseNum)
 		{
-				string str = "";
-				float mod;
+				string str = "0.";
+//				float mod;
 				while (number!=0) {
-						mod = number % baseNum;
-						number = Mathf.FloorToInt (number / baseNum);
-						str += mod.ToString ();
+						number = number * baseNum;
+						int num = Mathf.FloorToInt (number);
+						number -= num;
+						if (num < 10) {
+								str += num.ToString ();
+						} else {
+								float conv = num - 10;
+								conv += (int)'A';
+								str += (char)conv;
+						}
 				}
-				return str.Reverse ();
+				return str;
 		}
 }

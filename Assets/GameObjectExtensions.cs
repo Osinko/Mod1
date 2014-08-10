@@ -158,7 +158,12 @@ public static partial class TransformExtensions
 /// </summary>
 public static class MathfUtils
 {
-		//ユークリッドの互除法
+		/// <summary>
+		///ユークリッドの互除法
+		///最小公約数を返す
+		/// </summary>
+		/// <param name="x">The x coordinate.</param>
+		/// <param name="y">The y coordinate.</param>
 		public static float Gcd (float x, float y)
 		{
 				while (y!=0) {
@@ -168,7 +173,54 @@ public static class MathfUtils
 				}
 				return x;
 		}
-	
+
+		/// <summary>
+		///ユークリッドの互除法
+		///最小公約数を返す。足算引き算のみの計算（高速？）
+		/// </summary>
+		/// <param name="x">The x coordinate.</param>
+		/// <param name="y">The y coordinate.</param>
+		public static float Gcd2 (float x, float y)
+		{
+				while (x!=y) {
+						if (x > y) {
+								x -= y;
+						} else {
+								y -= x;
+						}
+				}
+				return x;
+		}
+
+		/// <summary>
+		///ユークリッドの互除法
+		///分数として扱い各値を約分する
+		/// </summary>
+		/// <param name="x">The x coordinate.</param>
+		/// <param name="y">The y coordinate.</param>
+		public static void Gcd (ref float x, ref float y)
+		{
+				float xx = x;
+				float yy = y;
+				while (yy!=0) {
+						float z = xx % yy;
+						xx = yy;
+						yy = z;
+				}
+				x /= xx;
+				y /= xx;
+		}
+
+		/// <summary>
+		/// 最大公約数を返す
+		/// </summary>
+		/// <param name="x">The x coordinate.</param>
+		/// <param name="y">The y coordinate.</param>
+		public static float Lcm (float x, float y)
+		{
+				return x * y / Gcd (x, y);
+		}
+
 	
 		/// <summary>
 		/// 値を入れ替えるジェネリック関数
