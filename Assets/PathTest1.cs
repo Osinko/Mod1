@@ -22,19 +22,12 @@ public class PathTest1 : MonoBehaviour
 //				byte odd = Convert.ToByte ("00000101", 2);	//奇数（5）
 //				byte even = Convert.ToByte ("00001010", 2);	//偶数（10）
 
-
 				foreach (var item in point) {
 						print (item);
 				}
 				print (Convert.ToString (point [0] >> 1, 2).PadLeft (8, '0'));		//1を右へビットシフトすると0になる
 				print ((point [3] & 1) == 2);
-
-
 		}
 
-		void  move (int pos)
-		{
-		
-		}
 
 }

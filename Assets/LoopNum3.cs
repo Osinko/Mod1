@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class LoopNum3 : MonoBehaviour
 {
-		enum MenuItem
+		public enum MenuItem
 		{
 				GAMESTART,
 				LEADERSBORD,
@@ -15,41 +16,53 @@ public class LoopNum3 : MonoBehaviour
 		MenuItem
 				menuItem;
 	
-		int itemLength = 4;
-		float count;
+		public int itemLength = 4;
 
-		void Start ()
-		{
-				count = 0;
-				print (menuItem);
-		}
-
-		int gauge;
-		bool prev;
-
-		const int firstStoppingFPSwait = 30;
-		const int repeatFPSwait = 4;
+		KeyAction upArrow = new KeyAction (KeyCode.UpArrow);
+		KeyAction downArrow = new KeyAction (KeyCode.DownArrow);
 
 		void FixedUpdate ()
 		{
-				if (Input.GetKey (KeyCode.UpArrow)) {
+				upArrow.Action (delegate {
 						menuItem = (MenuItem)(((int)menuItem + itemLength - 1) % itemLength);
+				});
+
+				downArrow.Action (delegate {
+						menuItem = (MenuItem)(((int)menuItem + 1) % itemLength);
+				});
+		}
+
+		class KeyAction
+		{
+				const int firstStoppingFPSwait = 30;
+				const int repeatFPSwait = 4;
+
+				KeyCode keyCode;
+				int gauge;
+				bool prev;
+
+				public KeyAction (KeyCode keyCode)
+				{
+						this.keyCode = keyCode;
 				}
 
-				if (Input.GetKey (KeyCode.DownArrow)) {
-						if (!prev) {
-								gauge = firstStoppingFPSwait;
-								menuItem = (MenuItem)(((int)menuItem + 1) % itemLength);
-						} else {
-								gauge--;
-								if (gauge < 0) {
-										gauge = repeatFPSwait;
-										menuItem = (MenuItem)(((int)menuItem + 1) % itemLength);
+				public void Action (Action action)
+				{
+						if (Input.GetKey (keyCode)) {
+								if (!prev) {
+										gauge = firstStoppingFPSwait;
+										action ();
+								} else {
+										gauge--;
+										if (gauge < 0) {
+												gauge = repeatFPSwait;
+												action ();
+										}
 								}
+								prev = true;
+						} else {
+								prev = false;
 						}
-						prev = true;
-				} else {
-						prev = false;
 				}
 		}
 }
