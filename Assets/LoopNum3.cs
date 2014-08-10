@@ -7,7 +7,7 @@ public class LoopNum3 : MonoBehaviour
 		public enum MenuItem
 		{
 				GAMESTART,
-				LEADERSBORD,
+				LEADERSBOARD,
 				CONFIG,
 				QUIT,
 		};
@@ -16,7 +16,7 @@ public class LoopNum3 : MonoBehaviour
 		MenuItem
 				menuItem;
 	
-		public int itemLength = 4;
+		int itemLength = 4;
 
 		KeyAction upArrow = new KeyAction (KeyCode.UpArrow);
 		KeyAction downArrow = new KeyAction (KeyCode.DownArrow);
